@@ -1,0 +1,175 @@
+<!DOCTYPE>
+<html>
+<head>
+<title>RANDOM GAME</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+ <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+	<!--<script type="text/javascript" src="./js/MYSCRIPT.js"></script>-->
+	<link rel="stylesheet" href="./css/style.css"/>
+	<script type="text/javascript">
+	/*Function Start From Here*/
+	var result;var n1;var n2;
+	function getRandomInt(min, max) 
+       {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+       }
+    function getnumbers()
+       {
+	   var n1=getRandomInt(1,17);
+	  var n2=getRandomInt(1,20-n1);
+	  var result=n1+n2;
+	  $("#Maincontainerdiv").append("<div id='no1' class='rndnumberdiv1'>"+n1+"</div>");
+	  $("#Maincontainerdiv").append("<div id='no2' class='rndnumberdiv2'>"+n2+"</div>");
+	   //$("#Maincontainerdiv").append("<div id='no3' class='rndnumberdiv3'>"+result+"</div>");
+	  assets(n1,"#asset1");
+	 assets(n2,"#asset2");
+	 assets(n1+n2,"#asset3");
+     
+      }
+	function createbutton()
+{
+      var left=10;
+      var top = 0;
+      var btnval,btnId,i;
+   for(i=0;i<=10;i++)
+	{  
+
+        if(i<10)
+		{
+			btnId=i;
+		}
+		else
+		{    
+	        btnId='clear';
+		}
+		  btn=$('<div id="btnimgID" class="btnimage" ></div>');
+		  btn.attr('id',"btnId"+btnId);
+		  btn.attr('value',btnId);
+		  btn.text(btnId);
+		  btn.appendTo($(".divforrndbuttons"));
+		  btn.css({'position':'absolute'});
+		  btn.css({'left':left,'top':top});
+		  left = parseIntCSSVal('left') + parseIntCSSVal('width') + 15;
+   }
+}
+  
+  function parseIntCSSVal(param)
+ {
+	 var val = btn.css(param);
+	 var result=parseInt(val.split("px")[0]);
+	 return result;
+	  
+ }
+	
+	  function parseIntCSSVal1(param)
+ {
+	 var val1 = assetbtn.css(param);
+	 var result=parseInt(val1.split("px")[0]);
+	 return result;
+	  
+ }
+function assets(n,assetid1)
+  {
+	  
+	  var left=10;
+	  var top=0;
+	  var btnVal,btnId,i,n;
+	 // debugger;
+	  for(i=0;i<n;i++)
+	  {
+
+		  //btnId=i;
+		  assetbtn=$('<div class="assetimg"></div>');
+		  console.log(assetbtn);
+		  assetbtn.attr('id',btnId);
+		  //assetbtn.attr('value',btnVal);
+		  assetbtn.text(btnId);
+		  assetbtn.appendTo($(""+assetid1));
+		  assetbtn.css({'left':left,'top':top,'position':'absolute'});
+		 if((i%4)==3)
+		  {
+			  left=10;
+			  top=parseIntCSSVal1('top')+parseIntCSSVal1('height')+15;
+			  
+		  }
+		  else
+		  {
+			  
+			  left=parseIntCSSVal1('left')+parseIntCSSVal1('width')+15;
+		  }
+	  }
+	  
+  }
+	
+	
+	
+	
+	
+	
+    $(document).ready(function(){
+	
+	$("#Maincontainerdiv").append(($('<div id="First" class="First"></div>')));//first Image append here
+	$("#Maincontainerdiv").append(($('<div id="second" class="second"></div>')));//Second Image append here
+	$("#Maincontainerdiv").append(($('<p id="Pcontent">Add20</p>')));//Header Text append here
+	$("#Maincontainerdiv").append(($('<p id="Pdivcontent">The Add20 can shows the pop up when submitting the answer is empty and answer is wrong.when the correct answer                          submit next question will be generate randomly.</p>')));//Instruction Board Text append here
+	$("#Maincontainerdiv").append(($('<div id= "Gobutton" class="Gobutton"></div>')));//Go Button append here
+	
+	
+	/* GO Button Click Event Start*/
+	$("#Gobutton").click(function(){
+	$("#First , #second , #Pcontent , #Pdivcontent").remove();
+	$("#Maincontainerdiv").append(($('<div id="farm_img" class="farm_img"></div>')));//Farm Image append here
+	$("#Maincontainerdiv").append(($('<div id="farmdiv1" class="farmdiv1"></div>')));//First Information Board append here
+	$("#Maincontainerdiv").append(($('<div id="farmdiv2" class="farmdiv2"></div>')));//Second Information Board append here
+	$("#Maincontainerdiv").append(($('<p id="Pdiv1_content">Complete the sum.</p>')));//First Information Board Text append here
+	$("#Maincontainerdiv").append(($('<p id="Pdiv1_content2">Click on the board to Enter.</p>')));//Second Information Board Text append here
+	$("#Maincontainerdiv").append(($('<div id="okbutton" class="okbutton"></div>')));//OK Button Image append here
+	$("#Maincontainerdiv").append(($('<p id="pAddsymbol">+</p>')));//Addition symbol append here
+	$("#Maincontainerdiv").append(($('<p id="pEqualsymbol">=</p>')));//EqualTo symbol append here
+	$("#Maincontainerdiv").append(($('<div id="#buttons" class="divforrndbuttons"></div>')));//Create Button Image append here
+	$("#Maincontainerdiv").append(($('<div id="ansbutton" class="answerdiv3"></div>')));//AnsBoard div append here
+	$("#Maincontainerdiv").append(($('<div id="asset1" class="assetimgdiv1"></div>')));//ASSET1 div append here
+	$("#Maincontainerdiv").append(($('<div id="asset2" class="assetimgdiv2"></div>')));//ASSET1 div append here
+	$("#Maincontainerdiv").append(($('<div id="asset3" class="assetimgdiv3"></div>')));//ASSET1 div append here
+	$("#Maincontainerdiv").append(($('<div id="okpopup" class="okpopup"></div>')));//OKPOPUP div append here
+	$("#Maincontainerdiv").append(($('<div id="okmessage" class="okmessage"></div>')));//OKMESSAGE div append here
+	$("#Maincontainerdiv").append(($('<div id="okalert" class="okalert"></div>')));//OKALERT div append here
+	 getnumbers();//Call Random Function
+	 createbutton()//Call CreateButton Function
+	
+	 $("#okbutton").click(function(){
+     
+   $("#okbutton").remove();
+   $(".okpopup , .okmessage ,.okalert").css("visibility",'visible');
+   
+    });
+	
+	$("#okalert").click(function(){
+     $("#okbutton").css("visibility",'visible');
+  
+    });
+	
+	});
+	/* GO Button Click Event End*/
+	 
+	
+	
+	
+	
+	
+	
+	
+	
+			   
+								   
+	});//Jquery Ready Event End
+	
+	
+	</script>
+</head>
+
+<body>
+
+<div id="Maincontainerdiv" class="Maincontainerdiv">  </div>
+</body>
+</html>
